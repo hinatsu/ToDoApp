@@ -9,7 +9,34 @@ class ToDoApp extends React.Component {
     };
   }
 
+  componentDidMount() {
 
+    try {
+      const json = localStorage.getItem('tasks');
+      const tasks = JSON.parse(json);
+
+      if (tasks) {
+        this.setState(() => ({ tasks }));
+      }
+    } catch (e) {
+      //Do nothing
+    }
+    
+
+    console.log("fetching data");
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.tasks.length !== this.state.tasks.length) {
+      const json = JSON.stringify(this.state.tasks);
+      localStorage.setItem('tasks', json);
+      console.log('saving data');
+    }
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+  }
 
   handleDeleteTasks() {
     this.setState(() => ({ tasks: [] }));
@@ -75,6 +102,7 @@ const Tasks = (props) => {
   return (
     <div>
       <button onClick={props.handleDeleteTasks}>Remove All Tasks</button>
+      {props.tasks.length === 0 && <p>Add your task!</p>}
       {
         props.tasks.map((task) => (
           <Task 
@@ -118,6 +146,10 @@ class AddTask extends React.Component {
     const error = this.props.handleAddTask(task);
 
     this.setState(() => ({ error }));
+
+    if (!error) {
+      e.target.elements.task.value = '';
+    }
   }
   render() {
     return (

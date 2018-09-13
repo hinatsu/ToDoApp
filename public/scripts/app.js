@@ -26,6 +26,39 @@ var ToDoApp = function (_React$Component) {
   }
 
   _createClass(ToDoApp, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+
+      try {
+        var json = localStorage.getItem('tasks');
+        var tasks = JSON.parse(json);
+
+        if (tasks) {
+          this.setState(function () {
+            return { tasks: tasks };
+          });
+        }
+      } catch (e) {
+        //Do nothing
+      }
+
+      console.log("fetching data");
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (prevState.tasks.length !== this.state.tasks.length) {
+        var json = JSON.stringify(this.state.tasks);
+        localStorage.setItem('tasks', json);
+        console.log('saving data');
+      }
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      console.log('componentWillUnmount');
+    }
+  }, {
     key: 'handleDeleteTasks',
     value: function handleDeleteTasks() {
       this.setState(function () {
@@ -116,6 +149,11 @@ var Tasks = function Tasks(props) {
       { onClick: props.handleDeleteTasks },
       'Remove All Tasks'
     ),
+    props.tasks.length === 0 && React.createElement(
+      'p',
+      null,
+      'Add your task!'
+    ),
     props.tasks.map(function (task) {
       return React.createElement(Task, {
         key: task,
@@ -169,6 +207,10 @@ var AddTask = function (_React$Component2) {
       this.setState(function () {
         return { error: error };
       });
+
+      if (!error) {
+        e.target.elements.task.value = '';
+      }
     }
   }, {
     key: 'render',
