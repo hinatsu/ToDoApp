@@ -5,7 +5,7 @@ import AddTask from './AddTask';
 
 export default class ToDoApp extends React.Component {
     state = {
-      tasks: []
+      tasks: [],
     }
 
   handleDeleteTasks = () => {
@@ -69,10 +69,12 @@ export default class ToDoApp extends React.Component {
           tasks={this.state.tasks}
           handleDeleteTasks={this.handleDeleteTasks}
           handleDeleteTask={this.handleDeleteTask}
+          handleEditTask={this.handleEditTask}
         />
         <AddTask 
           handleAddTask={this.handleAddTask}
         />
+
       </div>
     );
   }
