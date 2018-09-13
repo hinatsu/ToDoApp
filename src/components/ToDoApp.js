@@ -4,14 +4,29 @@ import Tasks from './Tasks';
 import AddTask from './AddTask';
 
 export default class ToDoApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleDeleteTasks = this.handleDeleteTasks.bind(this);
-    this.handleAddTask = this.handleAddTask.bind(this);
-    this.handleDeleteTask = this.handleDeleteTask.bind(this);
-    this.state = {
-      tasks: props.tasks
-    };
+    state = {
+      tasks: []
+    }
+
+  handleDeleteTasks = () => {
+    this.setState(() => ({ tasks: [] }));
+  };
+  handleDeleteTask = (taskToRemove) => {
+    this.setState((prevState) => ({
+      tasks: prevState.tasks.filter((task) => taskToRemove !== task)
+    }));
+  };
+ 
+  handleAddTask = (task) => {
+    if (!task) {
+      return 'Enter valid value to add task';
+    } else if (this.state.tasks.indexOf(task) > -1) {
+      return 'This task already exists';
+    }
+
+    this.setState((prevState) => ({ 
+      tasks: prevState.tasks.concat(task) 
+    }));
   }
 
   componentDidMount() {
@@ -43,30 +58,7 @@ export default class ToDoApp extends React.Component {
     console.log('componentWillUnmount');
   }
 
-  handleDeleteTasks() {
-    this.setState(() => ({ tasks: [] }));
-  }
-  handleDeleteTask(taskToRemove) {
-    this.setState((prevState) => ({
-      tasks: prevState.tasks.filter((task) => taskToRemove !== task)
-    }));
-  }
- 
- 
- 
- 
- 
-  handleAddTask(task) {
-    if (!task) {
-      return 'Enter valid value to add task';
-    } else if (this.state.tasks.indexOf(task) > -1) {
-      return 'This task already exists';
-    }
-
-    this.setState((prevState) => ({ 
-      tasks: prevState.tasks.concat(task) 
-    }));
-  }
+  
   render() {
     const subtitle = 'Manage your tasks here!';
 
