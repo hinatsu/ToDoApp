@@ -1,0 +1,17 @@
+.button {
+  background: $lighter-yellow;
+  border: none;
+  border-bottom: .3rem solid darken($yellow, 10%);
+  color: $dark-blue;
+  font-weight: 500;
+  padding: $s-size;
+}
+
+.button--link {
+  background: none;
+  border: none;
+  color: $off-white;
+  padding: 0;
+  margin-left: $m-size;
+  margin-top: 17px;
+}

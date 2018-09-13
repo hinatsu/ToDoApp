@@ -64,17 +64,20 @@ export default class ToDoApp extends React.Component {
 
     return (
       <div>
-        <Header subtitle={subtitle} />    
-        <Tasks 
-          tasks={this.state.tasks}
-          handleDeleteTasks={this.handleDeleteTasks}
-          handleDeleteTask={this.handleDeleteTask}
-          handleEditTask={this.handleEditTask}
-        />
-        <AddTask 
-          handleAddTask={this.handleAddTask}
-        />
-
+        <Header subtitle={subtitle} />
+        <div className="container">
+          <div className="widget">
+            <Tasks 
+              tasks={this.state.tasks}
+              handleDeleteTasks={this.handleDeleteTasks}
+              handleDeleteTask={this.handleDeleteTask}
+              handleEditTask={this.handleEditTask}
+            />
+            <AddTask 
+              handleAddTask={this.handleAddTask}
+            />
+          </div>
+        </div>
       </div>
     );
   }
