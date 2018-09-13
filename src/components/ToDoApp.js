@@ -6,6 +6,7 @@ import AddTask from './AddTask';
 export default class ToDoApp extends React.Component {
     state = {
       tasks: [],
+      completed: false
     }
 
   handleDeleteTasks = () => {
@@ -16,6 +17,7 @@ export default class ToDoApp extends React.Component {
       tasks: prevState.tasks.filter((task) => taskToRemove !== task)
     }));
   };
+  
  
   handleAddTask = (task) => {
     if (!task) {
