@@ -5,9 +5,17 @@
   padding: $m-size $m-size;
 }
 
+.task__check {
+  width: $l-size;
+  height: x-size;
+  margin: 1.2rem $s-size 0 0;
+  transform: scale(1.5);
+}
+
 .task__text {
+  float: right;
   color: $off-white;
   font-weight: 500;
-  font-size: 2rem;
-  margin: 0;
+  font-size: 2.5rem;
+  margin-top: 0.7rem;
 }

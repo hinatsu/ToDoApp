@@ -2,7 +2,16 @@ import React from 'react';
 
 const Task = (props) => (
   <div className="task">
-    <p className = "task__text">{props.count}. {props.taskText}</p>
+    <div>
+      <div>
+        <input 
+          className="task__Check"
+          type="checkbox" 
+        />
+        <div className="task__text">{props.taskText}</div>
+      </div>
+      
+    </div>
     <div>
       <button
         className="button button--link"

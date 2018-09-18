@@ -15,11 +15,10 @@ const Tasks = (props) => (
     
     {props.tasks.length === 0 && <p className="widget__message">Add your task!</p>}
     {
-      props.tasks.map((task, index) => (
+      props.tasks.map((task) => (
         <Task 
           key={task} 
           taskText={task} 
-          count={index + 1}
           handleDeleteTask={props.handleDeleteTask}
           handleEditTask={props.handleEditTask}
         />
