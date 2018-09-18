@@ -5,8 +5,7 @@ import AddTask from './AddTask';
 
 export default class ToDoApp extends React.Component {
     state = {
-      tasks: [],
-      completed: false
+      tasks: []
     }
 
   handleDeleteTasks = () => {
@@ -17,8 +16,11 @@ export default class ToDoApp extends React.Component {
       tasks: prevState.tasks.filter((task) => taskToRemove !== task)
     }));
   };
+
+  handleEditTask = () => {
+    
+  };
   
- 
   handleAddTask = (task) => {
     if (!task) {
       return 'Enter valid value to add task';
@@ -55,11 +57,6 @@ export default class ToDoApp extends React.Component {
       console.log('saving data');
     }
   }
-
-  componentWillUnmount() {
-    console.log('componentWillUnmount');
-  }
-
   
   render() {
     const subtitle = 'Manage your tasks here!';
