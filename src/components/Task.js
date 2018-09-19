@@ -7,24 +7,24 @@ const Task = (props) => (
         <input 
           className="task__Check"
           type="checkbox" 
+          onChange={(e) => {
+            props.handleDone(props.task)
+          }}
         />
-        <div className="task__text">{props.taskText}</div>
+        <div className="task__text">{props.task.taskText}</div>
       </div>
       
     </div>
     <div>
       <button
         className="button button--link"
-        onClick={(e) => {
-          props.handleEditTask(props.taskText);
-        }}
       >
         Edit
       </button>
       <button 
         className="button button--link button--edit"
         onClick={(e) => {
-          props.handleDeleteTask(props.taskText);
+          props.handleDeleteTask(props.task.taskText);
         }}
       >
         Remove

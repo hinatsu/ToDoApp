@@ -5,7 +5,11 @@ import AddTask from './AddTask';
 
 export default class ToDoApp extends React.Component {
     state = {
-      tasks: []
+      tasks: [
+        {taskText: "Run", done: false},
+        {taskText: "Run", done: false},
+        {taskText: "Run", done: false}
+      ]
     }
 
   handleDeleteTasks = () => {
@@ -13,23 +17,35 @@ export default class ToDoApp extends React.Component {
   };
   handleDeleteTask = (taskToRemove) => {
     this.setState((prevState) => ({
-      tasks: prevState.tasks.filter((task) => taskToRemove !== task)
+      tasks: prevState.tasks.filter((task) => taskToRemove !== task.taskText)
     }));
   };
 
-  handleEditTask = () => {
-    
+  handleDone = (taskToBeDone) => {
+    let tempList = this.state.tasks;
+      for(let i in tempList) {
+        console.log(tempList[i]);
+        console.log(taskToBeDone.taskText);
+        if(tempList[i].taskText === taskToBeDone.taskText) {
+          tempList[i].done = !taskToBeDone.done
+        }
+      }
+      console.log(tempList);
+      this.setState({
+        tasks: tempList
+      })
   };
   
   handleAddTask = (task) => {
     if (!task) {
       return 'Enter valid value to add task';
-    } else if (this.state.tasks.indexOf(task) > -1) {
-      return 'This task already exists';
-    }
+    } 
+    // else if (this.state.tasks.indexOf(task) > -1) {
+    //   return 'This task already exists';
+    // }
 
     this.setState((prevState) => ({ 
-      tasks: prevState.tasks.concat(task) 
+      tasks: prevState.tasks.concat({taskText: task, done: false}) 
     }));
   }
 
@@ -70,7 +86,7 @@ export default class ToDoApp extends React.Component {
               tasks={this.state.tasks}
               handleDeleteTasks={this.handleDeleteTasks}
               handleDeleteTask={this.handleDeleteTask}
-              handleEditTask={this.handleEditTask}
+              handleDone={this.handleDone}
             />
             <AddTask 
               handleAddTask={this.handleAddTask}
