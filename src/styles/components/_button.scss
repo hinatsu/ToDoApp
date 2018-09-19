@@ -14,4 +14,7 @@
   padding: 0;
   margin-left: $m-size;
   margin-top: 17px;
+  &:hover {
+    color: $lighter-yellow;
+  }
 }
