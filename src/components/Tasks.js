@@ -17,10 +17,10 @@ const Tasks = (props) => (
     {
       props.tasks.map((task) => (
         <Task 
-          key={task} 
-          taskText={task} 
+          key={task.taskText} 
+          task={task} 
           handleDeleteTask={props.handleDeleteTask}
-          handleEditTask={props.handleEditTask}
+          handleDone={props.handleDone}
         />
       ))
     }
