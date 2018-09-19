@@ -6,9 +6,7 @@ import AddTask from './AddTask';
 export default class ToDoApp extends React.Component {
     state = {
       tasks: [
-        {taskText: "Run", done: false},
-        {taskText: "Run", done: false},
-        {taskText: "Run", done: false}
+        {taskText: '', done: false, editing: false}
       ]
     }
 
@@ -20,6 +18,16 @@ export default class ToDoApp extends React.Component {
       tasks: prevState.tasks.filter((task) => taskToRemove !== task.taskText)
     }));
   };
+
+  handleEdit = (taskToEdit) => {
+
+  }
+
+  toggleEditing = (task) => {
+    console.log(this.state.editing)
+    const currentEditing = this.state.editing;
+    this.setState({editing: !currentEditing})
+  }
 
   handleDone = (taskToBeDone) => {
     let tempList = this.state.tasks;
@@ -42,7 +50,7 @@ export default class ToDoApp extends React.Component {
     // }
 
     this.setState((prevState) => ({ 
-      tasks: prevState.tasks.concat({taskText: task, done: false}) 
+      tasks: prevState.tasks.concat({taskText: task, done: false, editing: false}) 
     }));
   }
 
@@ -86,6 +94,8 @@ export default class ToDoApp extends React.Component {
               handleDeleteTasks={this.handleDeleteTasks}
               handleDeleteTask={this.handleDeleteTask}
               handleDone={this.handleDone}
+              handleEdit={this.handleEdit}
+              toggleEditing={this.toggleEditing}
             />
             <AddTask 
               handleAddTask={this.handleAddTask}

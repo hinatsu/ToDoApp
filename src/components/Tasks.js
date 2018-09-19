@@ -21,6 +21,8 @@ const Tasks = (props) => (
           task={task} 
           handleDeleteTask={props.handleDeleteTask}
           handleDone={props.handleDone}
+          handleEdit={props.handleEdit}
+          toggleEditing={props.toggleEditing}
         />
       ))
     }

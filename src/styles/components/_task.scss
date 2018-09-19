@@ -3,9 +3,14 @@
   display: flex;
   justify-content: space-between;
   padding: $m-size $m-size;
+
+  &:hover {
+    border-left: 1px solid $lighter-yellow
+  }
 }
 
 .task__check {
+  cursor: pointer;
   width: $l-size;
   height: x-size;
   margin: 1.2rem $s-size 0 0;
