@@ -10,6 +10,7 @@ const Task = (props) => (
           onChange={(e) => {
             props.handleDone(props.task)
           }}
+          checked={props.task.done}
         />
         <div className="task__text">{props.task.taskText}</div>
       </div>

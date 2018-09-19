@@ -24,13 +24,10 @@ export default class ToDoApp extends React.Component {
   handleDone = (taskToBeDone) => {
     let tempList = this.state.tasks;
       for(let i in tempList) {
-        console.log(tempList[i]);
-        console.log(taskToBeDone.taskText);
         if(tempList[i].taskText === taskToBeDone.taskText) {
           tempList[i].done = !taskToBeDone.done
         }
       }
-      console.log(tempList);
       this.setState({
         tasks: tempList
       })
@@ -53,6 +50,7 @@ export default class ToDoApp extends React.Component {
 
     try {
       const json = localStorage.getItem('tasks');
+
       const tasks = JSON.parse(json);
 
       if (tasks) {
@@ -62,16 +60,17 @@ export default class ToDoApp extends React.Component {
       //Do nothing
     }
     
-
     console.log("fetching data");
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.tasks.length !== this.state.tasks.length) {
+    console.log(prevState !== this.state);
+    if (prevState.tasks.length !== this.state.tasks.length || prevState != this.state) {
       const json = JSON.stringify(this.state.tasks);
       localStorage.setItem('tasks', json);
       console.log('saving data');
     }
+    console.log(localStorage)
   }
   
   render() {
