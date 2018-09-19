@@ -18,7 +18,10 @@ const Task = (props) => (
     </div>
     <div>
       <button
-        className="button button--link"
+        className="button button--link" 
+        onClick={(e) => {
+          props.toggleEditing(props.task.taskText);
+        }}
       >
         Edit
       </button>
@@ -31,6 +34,7 @@ const Task = (props) => (
         Remove
       </button>
     </div>
+
   </div>
 ); 
 
